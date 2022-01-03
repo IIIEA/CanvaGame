@@ -7,6 +7,9 @@ public class AnimationSetter : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
 
+    private const string takeDamage = nameof(takeDamage);
+    private const string takeHeal = nameof(takeHeal);
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -14,6 +17,11 @@ public class AnimationSetter : MonoBehaviour
 
     public void TakeDamage()
     {
-        _animator.SetTrigger("takeDamage");
+        _animator.SetTrigger(takeDamage);
+    }
+
+    public void TakeHeal()
+    {
+        _animator.SetTrigger(takeHeal);
     }
 }

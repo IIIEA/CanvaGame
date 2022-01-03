@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 365522711}
   - component: {fileID: 365522710}
   - component: {fileID: 365522713}
+  - component: {fileID: 365522714}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -420,7 +421,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.34, y: 1.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -453,6 +454,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 365522710}
+--- !u!114 &365522714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365522709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a3633b17e2dce4b9fcafd192c5a5c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
 --- !u!1 &492797886
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,9 +550,33 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1597444020}
-        m_TargetAssemblyTypeName: Button, Assembly-CSharp
+      - m_Target: {fileID: 365522713}
+        m_TargetAssemblyTypeName: AnimationSetter, Assembly-CSharp
         m_MethodName: TakeDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 365522714}
+        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1597444020}
+        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
+        m_MethodName: SetSliderValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -752,15 +790,39 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1597444020}
-        m_TargetAssemblyTypeName: Button, Assembly-CSharp
+      - m_Target: {fileID: 365522713}
+        m_TargetAssemblyTypeName: AnimationSetter, Assembly-CSharp
         m_MethodName: TakeHeal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 365522714}
+        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
+        m_MethodName: TakeHealth
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1597444020}
+        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
+        m_MethodName: SetSliderValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1137,19 +1199,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 365522713}
-        m_TargetAssemblyTypeName: AnimationSetter, Assembly-CSharp
-        m_MethodName: TakeDamage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1597444020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1162,7 +1212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f3789e28537f54ab4cc48937aca234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slider: {fileID: 1597444019}
+  _player: {fileID: 365522714}
 --- !u!1 &1615595168
 GameObject:
   m_ObjectHideFlags: 0
