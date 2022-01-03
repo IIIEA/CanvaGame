@@ -12,7 +12,7 @@ public class HealthBar : MonoBehaviour
     private Slider _slider;
     private float _minSliderValue = 0;
 
-    private const float _delayToFill = 0.3f;
+    private const float _delayToFill = 0.5f;
 
     private void OnValidate()
     {

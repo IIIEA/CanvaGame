@@ -21,21 +21,15 @@ public class Player : MonoBehaviour
             _health = 0;
     }
 
-    public void TakeDamage(float damage)
+    public void ChangeHealthValue(float value)
     {
-        _health -= damage;
-
-        if(_health < 0)
-        {
-            _health = 0;
-        }
-    }
-
-    public void TakeHealth(float heal)
-    {
-        _health += heal;
+        _health += value;
 
         if (_health > _maxHealth)
+        {
+            _health = _maxHealth;
+        }
+        else if(_health < 0)
         {
             _health = _maxHealth;
         }
