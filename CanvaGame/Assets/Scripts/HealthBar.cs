@@ -14,14 +14,6 @@ public class HealthBar : MonoBehaviour
 
     private const float _delayToFill = 0.5f;
 
-    private void OnValidate()
-    {
-        if(_minSliderValue >= _player.Health)
-        {
-            _minSliderValue = _player.Health - 1;
-        }
-    }
-
     private void Awake()
     {
         _slider = GetComponent<Slider>();
@@ -34,7 +26,17 @@ public class HealthBar : MonoBehaviour
         _slider.value = _player.Health;
     }
 
-    public void SetSliderValue()
+    public void OnEnable()
+    {
+        _player.HealthChanged += OnHealthChanged;
+    }
+
+    private void OnDisable()
+    {
+        _player.HealthChanged -= OnHealthChanged;
+    }
+
+    private void OnHealthChanged()
     {
         _slider.DOValue(_player.Health, _delayToFill);
     }

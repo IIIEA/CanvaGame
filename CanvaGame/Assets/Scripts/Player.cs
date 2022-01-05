@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _health;
+    [SerializeField] private int _health;
 
-    private float _maxHealth;
+    private int _maxHealth;
 
-    public float Health => _health;
+    public event UnityAction HealthChanged;
+
+    public int Health => _health;
 
     private void Awake()
     {
@@ -21,17 +24,15 @@ public class Player : MonoBehaviour
             _health = 0;
     }
 
-    public void ChangeHealthValue(float value)
+    public void ApplyDamage(int value)
     {
-        _health += value;
+        _health -= value;
+        HealthChanged?.Invoke();
+
+        if (_health <= 0)
+            Destroy(gameObject);
 
         if (_health > _maxHealth)
-        {
             _health = _maxHealth;
-        }
-        else if(_health < 0)
-        {
-            _health = _maxHealth;
-        }
     }
 }
