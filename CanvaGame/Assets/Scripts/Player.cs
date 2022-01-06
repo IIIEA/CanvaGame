@@ -7,15 +7,15 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int _health;
 
-    private int _maxHealth;
+    private int _currentHealth;
 
-    public event UnityAction HealthChanged;
+    public event UnityAction<int,int> HealthChanged;
 
     public int Health => _health;
 
-    private void Awake()
+    private void Start()
     {
-        _maxHealth = _health;
+        _currentHealth = _health;
     }
 
     private void OnValidate()
@@ -26,13 +26,19 @@ public class Player : MonoBehaviour
 
     public void ApplyDamage(int value)
     {
-        _health -= value;
-        HealthChanged?.Invoke();
+        _currentHealth -= value;
+        HealthChanged?.Invoke(_currentHealth, _health);
 
-        if (_health <= 0)
+        if (_currentHealth <= 0)
             Destroy(gameObject);
+    }
 
-        if (_health > _maxHealth)
-            _health = _maxHealth;
+    public void TakeHeal(int heal)
+    {
+        _currentHealth += heal;
+        HealthChanged?.Invoke(_currentHealth, _health);
+
+        if (_currentHealth >= _health)
+            _currentHealth = _health;
     }
 }
