@@ -8,7 +8,6 @@ public class HealthBar : Bar
 
     public void OnEnable()
     {
-        _slider.value = _player.Health;
         _player.HealthChanged += OnHealthChanged;
     }
 

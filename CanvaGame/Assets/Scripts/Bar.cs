@@ -12,6 +12,7 @@ public abstract class Bar : MonoBehaviour
 
     protected void OnHealthChanged(int value, int maxValue)
     {
-        _slider.DOValue((float)value / maxValue, _delayToFill);
+        if (maxValue != 0)
+            _slider.DOValue((float)value / maxValue, _delayToFill);
     }
 }
